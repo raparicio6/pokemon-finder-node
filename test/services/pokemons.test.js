@@ -7,7 +7,7 @@ const {
 const { properResponse, responseWithError } = require('../schemas/pokemonServiceSchemas');
 
 describe('Pokemon Service GET /pokemon/:pokemonName endpoint', () => {
-  describe('Get fields correctly', () => {
+  describe('Successful response', () => {
     let pokemonApiResponse = null;
     beforeAll(async done => {
       nock(`${pokemonApiBaseUrl}`)
@@ -71,7 +71,7 @@ describe('Pokemon Service GET /pokemon/:pokemonName endpoint', () => {
     });
   });
 
-  describe('Service respond with error', () => {
+  describe('Response with error', () => {
     let pokemonApiError = null;
     beforeAll(async done => {
       nock(`${pokemonApiBaseUrl}`)

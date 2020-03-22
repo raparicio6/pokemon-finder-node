@@ -5,24 +5,48 @@ const app = require('../../app');
 const {
   common: { pokemonApiBaseUrl }
 } = require('../../config');
-const { properResponse } = require('../schemas/pokemonServiceSchemas');
+const { properResponse, responseWithError } = require('../schemas/pokemonServiceSchemas');
 
 describe('GET /pokemons/:pokemonName', () => {
-  let response = null;
-  beforeAll(async done => {
-    nock(`${pokemonApiBaseUrl}`)
-      .get(/pokemon\/([^\s]+)/)
-      .reply(200, properResponse);
+  describe('Successful response', () => {
+    let response = null;
+    beforeAll(async done => {
+      nock(`${pokemonApiBaseUrl}`)
+        .get(/pokemon\/([^\s]+)/)
+        .reply(200, properResponse);
 
-    response = await request(app).get('/pokemons/butterfree');
-    return done();
+      response = await request(app).get('/pokemons/butterfree');
+      return done();
+    });
+
+    it('status is 200', () => {
+      expect(response.status).toBe(200);
+    });
+
+    it('response has pokemon property', () => {
+      expect(response.body).toHaveProperty('pokemon');
+    });
   });
 
-  it('status is 200', () => {
-    expect(response.status).toBe(200);
-  });
+  describe('Response with error', () => {
+    let response = null;
+    beforeAll(async done => {
+      nock(`${pokemonApiBaseUrl}`)
+        .get(/pokemon\/([^\s]+)/)
+        .reply(503, responseWithError);
 
-  it('response has pokemon property', () => {
-    expect(response.body).toHaveProperty('pokemon');
+      response = await request(app).get('/pokemons/butterfree');
+      return done();
+    });
+
+    it('status is 503', () => {
+      expect(response.status).toBe(503);
+    });
+    it('message is Service Unavailable', () => {
+      expect(response.body.message).toBe('Service Unavailable');
+    });
+    it('origin is Pokemon', () => {
+      expect(response.body.origin).toBe('Pokemon');
+    });
   });
 });
