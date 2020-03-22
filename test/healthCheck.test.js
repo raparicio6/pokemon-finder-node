@@ -9,11 +9,11 @@ describe('GET /health', () => {
     return done();
   });
 
-  it('respond with status 200', () => {
+  it('status is 200', () => {
     expect(response.status).toBe(200);
   });
 
-  it('respond with uptime property', () => {
+  it('response has uptime property', () => {
     expect(response.body).toHaveProperty('uptime');
   });
 

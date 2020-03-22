@@ -18,55 +18,55 @@ describe('Pokemon Service GET /pokemon/:pokemonName endpoint', () => {
       return done();
     });
 
-    it('gets abilities field correctly', () => {
+    it('response has abilities property', () => {
       expect(pokemonApiResponse).toHaveProperty('abilities');
     });
-    it('gets base_experience field correctly', () => {
+    it('response has base_experience property', () => {
       expect(pokemonApiResponse).toHaveProperty('base_experience');
     });
-    it('gets forms field correctly', () => {
+    it('response has forms property', () => {
       expect(pokemonApiResponse).toHaveProperty('forms');
     });
-    it('gets game_indices field correctly', () => {
+    it('response has game_indices property', () => {
       expect(pokemonApiResponse).toHaveProperty('game_indices');
     });
-    it('gets height field correctly', () => {
+    it('response has height property', () => {
       expect(pokemonApiResponse).toHaveProperty('height');
     });
-    it('gets held_items field correctly', () => {
+    it('response has held_items property', () => {
       expect(pokemonApiResponse).toHaveProperty('held_items');
     });
-    it('gets id field correctly', () => {
+    it('response has id property', () => {
       expect(pokemonApiResponse).toHaveProperty('id');
     });
-    it('gets is_default field correctly', () => {
+    it('response has is_default property', () => {
       expect(pokemonApiResponse).toHaveProperty('is_default');
     });
-    it('gets location_area_encounters field correctly', () => {
+    it('response has location_area_encounters property', () => {
       expect(pokemonApiResponse).toHaveProperty('location_area_encounters');
     });
-    it('gets moves field correctly', () => {
+    it('response has moves property', () => {
       expect(pokemonApiResponse).toHaveProperty('moves');
     });
-    it('gets name field correctly', () => {
+    it('response has name property', () => {
       expect(pokemonApiResponse).toHaveProperty('name');
     });
-    it('gets order field correctly', () => {
+    it('response has order property', () => {
       expect(pokemonApiResponse).toHaveProperty('order');
     });
-    it('gets species field correctly', () => {
+    it('response has species property', () => {
       expect(pokemonApiResponse).toHaveProperty('species');
     });
-    it('gets sprites field correctly', () => {
+    it('response has sprites property', () => {
       expect(pokemonApiResponse).toHaveProperty('sprites');
     });
-    it('gets stats field correctly', () => {
+    it('response has stats property', () => {
       expect(pokemonApiResponse).toHaveProperty('stats');
     });
-    it('gets types field correctly', () => {
+    it('response has types property', () => {
       expect(pokemonApiResponse).toHaveProperty('types');
     });
-    it('gets weight field correctly', () => {
+    it('response has weight property', () => {
       expect(pokemonApiResponse).toHaveProperty('weight');
     });
   });

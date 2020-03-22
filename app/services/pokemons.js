@@ -13,7 +13,7 @@ exports.getPokemon = pokemonName => {
     url: `${pokemonApiBaseUrl}/pokemon/${pokemonName}`
   };
   return request(options)
-    .then(res => res.data)
+    .then(response => response.data)
     .catch(error => {
       logger.error(error.toJSON());
       throw errors.externalApiError(error.response.data, 'Pokemon');
