@@ -9,6 +9,10 @@ const statusCodes = {
 };
 
 exports.handle = (error, req, res, next) => {
+  if (error.origin) {
+    return res.status(error.statusCode).send(error);
+  }
+
   res.status(statusCodes[error.internalCode] || DEFAULT_STATUS_CODE);
   logger.error(error);
   return res.send({ message: error.message, internal_code: error.internalCode || errors.DEFAULT_ERROR });

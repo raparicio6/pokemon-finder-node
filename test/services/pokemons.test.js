@@ -4,20 +4,20 @@ const { getPokemon } = require('../../app/services/pokemons');
 const {
   common: { pokemonApiBaseUrl }
 } = require('../../config');
-const pokemonServiceResponseSchema = require('../schemas/pokemonServiceResponseSchema');
+const { properResponse, responseWithError } = require('../schemas/pokemonServiceSchemas');
 
-describe('pokemon service GET /pokemon/:pokemonName endpoint', () => {
-  let pokemonApiResponse = null;
-  beforeAll(async done => {
-    nock(`${pokemonApiBaseUrl}`)
-      .get(/pokemon\/([^\s]+)/)
-      .reply(200, pokemonServiceResponseSchema);
-
-    pokemonApiResponse = await getPokemon('butterfree');
-    return done();
-  });
-
+describe('Pokemon Service GET /pokemon/:pokemonName endpoint', () => {
   describe('Get fields correctly', () => {
+    let pokemonApiResponse = null;
+    beforeAll(async done => {
+      nock(`${pokemonApiBaseUrl}`)
+        .get(/pokemon\/([^\s]+)/)
+        .reply(200, properResponse);
+
+      pokemonApiResponse = await getPokemon('butterfree');
+      return done();
+    });
+
     it('gets abilities field correctly', () => {
       expect(pokemonApiResponse).toHaveProperty('abilities');
     });
@@ -68,6 +68,32 @@ describe('pokemon service GET /pokemon/:pokemonName endpoint', () => {
     });
     it('gets weight field correctly', () => {
       expect(pokemonApiResponse).toHaveProperty('weight');
+    });
+  });
+
+  describe('Service respond with error', () => {
+    let pokemonApiError = null;
+    beforeAll(async done => {
+      nock(`${pokemonApiBaseUrl}`)
+        .get(/pokemon\/([^\s]+)/)
+        .reply(503, responseWithError);
+
+      try {
+        await getPokemon('butterfree');
+      } catch (error) {
+        pokemonApiError = error;
+      }
+      return done();
+    });
+
+    it('status is 503', () => {
+      expect(pokemonApiError.statusCode).toBe(503);
+    });
+    it('message is Service Unavailable', () => {
+      expect(pokemonApiError.message).toBe('Service Unavailable');
+    });
+    it('origin is Pokemon', () => {
+      expect(pokemonApiError.origin).toBe('Pokemon');
     });
   });
 });

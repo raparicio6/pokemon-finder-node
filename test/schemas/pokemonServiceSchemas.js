@@ -1,4 +1,4 @@
-module.exports = {
+exports.properResponse = {
   id: 12,
   name: 'butterfree',
   base_experience: 178,
@@ -136,4 +136,10 @@ module.exports = {
       }
     }
   ]
+};
+
+exports.responseWithError = {
+  message: 'Service Unavailable',
+  statusCode: 503,
+  origin: 'Pokemon'
 };

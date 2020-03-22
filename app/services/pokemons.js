@@ -4,11 +4,18 @@ const {
   common: { pokemonApiBaseUrl }
 } = require('../../config');
 const { GET } = require('../constants');
+const logger = require('../logger');
+const errors = require('../errors');
 
 exports.getPokemon = pokemonName => {
   const options = {
     method: GET,
     url: `${pokemonApiBaseUrl}/pokemon/${pokemonName}`
   };
-  return request(options).then(res => res.data);
+  return request(options)
+    .then(res => res.data)
+    .catch(error => {
+      logger.error(error.toJSON());
+      throw errors.externalApiError(error.response.data, 'Pokemon');
+    });
 };
