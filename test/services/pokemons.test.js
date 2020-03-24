@@ -1,10 +1,14 @@
 const nock = require('nock');
 
-const { getPokemon } = require('../../app/services/pokemons');
+const { getPokemon, getAllPokemons } = require('../../app/services/pokemons');
 const {
   common: { pokemonApiBaseUrl }
 } = require('../../config');
-const { properResponse, responseWithError } = require('../schemas/pokemonServiceSchemas');
+const {
+  properGetPokemonResponse,
+  responseWithError,
+  properGetAllPokemonsResponse
+} = require('../schemas/pokemonServiceSchemas');
 
 describe('Pokemon Service GET /pokemon/:pokemonName endpoint', () => {
   describe('Successful response', () => {
@@ -12,7 +16,7 @@ describe('Pokemon Service GET /pokemon/:pokemonName endpoint', () => {
     beforeAll(async done => {
       nock(`${pokemonApiBaseUrl}`)
         .get(/pokemon\/([^\s]+)/)
-        .reply(200, properResponse);
+        .reply(200, properGetPokemonResponse);
 
       pokemonApiResponse = await getPokemon('butterfree');
       return done();
@@ -96,4 +100,66 @@ describe('Pokemon Service GET /pokemon/:pokemonName endpoint', () => {
       expect(pokemonApiError.origin).toBe('Pokemon');
     });
   });
+});
+
+describe('Pokemon Service GET /pokemon endpoint', () => {
+  describe('Successful response', () => {
+    let pokemonApiResponse = null;
+    beforeAll(async done => {
+      nock(`${pokemonApiBaseUrl}`)
+        .get(/pokemon/)
+        .reply(200, properGetAllPokemonsResponse);
+
+      pokemonApiResponse = await getAllPokemons();
+      return done();
+    });
+
+    it('response has count property', () => {
+      expect(pokemonApiResponse).toHaveProperty('count');
+    });
+    it('response has next property', () => {
+      expect(pokemonApiResponse).toHaveProperty('next');
+    });
+    it('response has previous property', () => {
+      expect(pokemonApiResponse).toHaveProperty('previous');
+    });
+    it('response has results property', () => {
+      expect(pokemonApiResponse).toHaveProperty('results');
+    });
+    it('results is an array', () => {
+      expect(Array.isArray(pokemonApiResponse.results)).toBe(true);
+    });
+    it('results elements have name property', () => {
+      expect(pokemonApiResponse.results[0]).toHaveProperty('name');
+    });
+    it('results elements have url property', () => {
+      expect(pokemonApiResponse.results[0]).toHaveProperty('url');
+    });
+  });
+
+  describe('Response with error', () => {
+    let pokemonApiError = null;
+    beforeAll(async done => {
+      nock(`${pokemonApiBaseUrl}`)
+        .get(/pokemon/)
+        .reply(503, responseWithError);
+
+      try {
+        await getAllPokemons();
+      } catch (error) {
+        pokemonApiError = error;
+      }
+      return done();
+    });
+
+    it('status is 503', () => {
+      expect(pokemonApiError.statusCode).toBe(503);
+    });
+    it('message is Service Unavailable', () => {
+      expect(pokemonApiError.message).toBe('Service Unavailable');
+    });
+    it('origin is Pokemon', () => {
+      expect(pokemonApiError.origin).toBe('Pokemon');
+    });
+});
 });
