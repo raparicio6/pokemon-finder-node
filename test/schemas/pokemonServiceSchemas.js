@@ -172,6 +172,6 @@ exports.properGetAllPokemonsResponse = {
     {
       name: 'blossom',
       url: 'https://pokeapi.co/api/v2/pokemon/40'
-    },
+    }
   ]
 };
