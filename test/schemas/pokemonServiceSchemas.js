@@ -164,6 +164,14 @@ exports.properGetAllPokemonsResponse = {
     {
       name: 'charmander',
       url: 'https://pokeapi.co/api/v2/pokemon/4/'
-    }
+    },
+    {
+      name: 'blastoise',
+      url: 'https://pokeapi.co/api/v2/pokemon/10'
+    },
+    {
+      name: 'blossom',
+      url: 'https://pokeapi.co/api/v2/pokemon/40'
+    },
   ]
 };
