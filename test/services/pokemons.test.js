@@ -161,5 +161,5 @@ describe('Pokemon Service GET /pokemon endpoint', () => {
     it('origin is Pokemon', () => {
       expect(pokemonApiError.origin).toBe('Pokemon');
     });
-});
+  });
 });

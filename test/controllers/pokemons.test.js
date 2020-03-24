@@ -5,7 +5,11 @@ const app = require('../../app');
 const {
   common: { pokemonApiBaseUrl }
 } = require('../../config');
-const { properResponse, responseWithError } = require('../schemas/pokemonServiceSchemas');
+const {
+  properGetPokemonResponse,
+  responseWithError,
+  properGetAllPokemonsResponse
+} = require('../schemas/pokemonServiceSchemas');
 
 describe('GET /pokemons/:pokemonName', () => {
   describe('Successful response', () => {
@@ -13,7 +17,7 @@ describe('GET /pokemons/:pokemonName', () => {
     beforeAll(async done => {
       nock(`${pokemonApiBaseUrl}`)
         .get(/pokemon\/([^\s]+)/)
-        .reply(200, properResponse);
+        .reply(200, properGetPokemonResponse);
 
       response = await request(app).get('/pokemons/butterfree');
       return done();
@@ -36,6 +40,46 @@ describe('GET /pokemons/:pokemonName', () => {
         .reply(503, responseWithError);
 
       response = await request(app).get('/pokemons/butterfree');
+      return done();
+    });
+
+    it('status is 503', () => {
+      expect(response.status).toBe(503);
+    });
+    it('message is Service Unavailable', () => {
+      expect(response.body.message).toBe('Service Unavailable');
+    });
+    it('origin is Pokemon', () => {
+      expect(response.body.origin).toBe('Pokemon');
+    });
+  });
+});
+
+describe('GET /pokemons', () => {
+  describe('Successful response', () => {
+    let response = null;
+    beforeAll(async done => {
+      nock(`${pokemonApiBaseUrl}`)
+        .get(/pokemon/)
+        .reply(200, properGetAllPokemonsResponse);
+
+      response = await request(app).get('/pokemons');
+      return done();
+    });
+
+    it('status is 200', () => {
+      expect(response.status).toBe(200);
+    });
+  });
+
+  describe('Response with error', () => {
+    let response = null;
+    beforeAll(async done => {
+      nock(`${pokemonApiBaseUrl}`)
+        .get(/pokemon/)
+        .reply(503, responseWithError);
+
+      response = await request(app).get('/pokemons');
       return done();
     });
 

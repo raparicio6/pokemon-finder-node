@@ -1,10 +1,14 @@
-const { formatPokemon } = require('../../app/serializers/pokemons');
-const { properResponse } = require('../schemas/pokemonServiceSchemas');
+const { formatPokemon, getHashedPokemonsNames } = require('../../app/serializers/pokemons');
+const {
+  properGetPokemonResponse,
+  properGetAllPokemonsResponse
+} = require('../schemas/pokemonServiceSchemas');
+const hashedPokemonsNamesSchema = require('../schemas/hashedPokemonsNamesSchema');
 
 describe('formatPokemon', () => {
   let formattedPokemon = null;
   beforeAll(done => {
-    formattedPokemon = formatPokemon(properResponse);
+    formattedPokemon = formatPokemon(properGetPokemonResponse);
     return done();
   });
 
@@ -28,5 +32,17 @@ describe('formatPokemon', () => {
   });
   it('formattedPokemon has imageUrl property', () => {
     expect(formattedPokemon.pokemon).toHaveProperty('imageUrl');
+  });
+});
+
+describe('getHashedPokemonsNames', () => {
+  let hashedPokemonsNames = null;
+  beforeAll(done => {
+    hashedPokemonsNames = getHashedPokemonsNames(properGetAllPokemonsResponse.results);
+    return done();
+  });
+
+  it('hashedPokemonsNames has characters as keys, a character as the value of each key, and an array as value of each of this last key', () => {
+    expect(hashedPokemonsNames).toMatchObject(hashedPokemonsNamesSchema);
   });
 });
