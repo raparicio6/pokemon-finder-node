@@ -2,10 +2,12 @@ const { expressMiddleware, expressRequestIdMiddleware } = require('express-wolox
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
+const swaggerUi = require('swagger-ui-express');
 const config = require('./config');
 const routes = require('./app/routes');
 const errors = require('./app/middlewares/errors');
 const logger = require('./app/logger');
+const documentation = require('./documentation');
 
 const DEFAULT_BODY_SIZE_LIMIT = 1024 * 1024 * 10;
 const DEFAULT_PARAMETER_LIMIT = 10000;
@@ -28,6 +30,7 @@ app.use(cors());
 app.use(bodyParser.json(bodyParserJsonConfig()));
 app.use(bodyParser.urlencoded(bodyParserUrlencodedConfig()));
 app.use(expressRequestIdMiddleware());
+app.use('/docs', swaggerUi.serve, swaggerUi.setup(documentation));
 
 if (!config.isTesting) app.use(expressMiddleware({ loggerFn: logger.info }));
 
