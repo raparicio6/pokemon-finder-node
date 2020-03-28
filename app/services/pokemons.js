@@ -7,6 +7,8 @@ const { GET, POKEMONS_FETCHING_LIMIT } = require('../constants');
 const logger = require('../logger');
 const errors = require('../errors');
 
+const SERVICE_NAME = 'Pokemon service';
+
 exports.getPokemon = pokemonName => {
   const options = {
     method: GET,
@@ -16,7 +18,7 @@ exports.getPokemon = pokemonName => {
     .then(response => response.data)
     .catch(error => {
       logger.error(error.toJSON());
-      throw errors.externalApiError(error.response.data, 'Pokemon');
+      throw errors.externalApiError(error.response.status, error.message, SERVICE_NAME);
     });
 };
 
@@ -32,6 +34,6 @@ exports.getAllPokemons = () => {
     .then(response => response.data)
     .catch(error => {
       logger.error(error.toJSON());
-      throw errors.externalApiError(error.response.data, 'Pokemon');
+      throw errors.externalApiError(error.response.status, error.message, SERVICE_NAME);
     });
 };

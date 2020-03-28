@@ -52,11 +52,11 @@ describe('GET /pokemons', () => {
     it('status is 503', () => {
       expect(response.status).toBe(503);
     });
-    it('message is Service Unavailable', () => {
-      expect(response.body.message).toBe('Service Unavailable');
+    it('message is Request failed with status code 503', () => {
+      expect(response.body.message).toBe('Request failed with status code 503');
     });
-    it('origin is Pokemon', () => {
-      expect(response.body.origin).toBe('Pokemon');
+    it('origin is Pokemon service', () => {
+      expect(response.body.origin).toBe('Pokemon service');
     });
   });
 });
@@ -92,11 +92,11 @@ describe('GET /pokemons_names', () => {
     it('status is 503', () => {
       expect(response.status).toBe(503);
     });
-    it('message is Service Unavailable', () => {
-      expect(response.body.message).toBe('Service Unavailable');
+    it('message is Request failed with status code 503', () => {
+      expect(response.body.message).toBe('Request failed with status code 503');
     });
-    it('origin is Pokemon', () => {
-      expect(response.body.origin).toBe('Pokemon');
+    it('origin is Pokemon service', () => {
+      expect(response.body.origin).toBe('Pokemon service');
     });
   });
 });
