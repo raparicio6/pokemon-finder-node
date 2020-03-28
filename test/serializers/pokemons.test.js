@@ -2,8 +2,8 @@ const { formatPokemons, getHashedPokemonsNames } = require('../../app/serializer
 const {
   properGetPokemonResponse,
   properGetAllPokemonsResponse
-} = require('../schemas/pokemonServiceSchemas');
-const hashedPokemonsNamesSchema = require('../schemas/hashedPokemonsNamesSchema');
+} = require('../utils/schemas/pokemonServiceSchemas');
+const hashedPokemonsNamesSchema = require('../utils/schemas/hashedPokemonsNamesSchema');
 
 describe('formatPokemons', () => {
   let formattedPokemons = null;
@@ -17,6 +17,9 @@ describe('formatPokemons', () => {
   });
   it('pokemons property is an array', () => {
     expect(Array.isArray(formattedPokemons.pokemons)).toBe(true);
+  });
+  it('pokemons property has length 1', () => {
+    expect(formattedPokemons.pokemons.length).toBe(1);
   });
   it('formattedPokemon has id property', () => {
     expect(formattedPokemons.pokemons[0]).toHaveProperty('id');

@@ -9,7 +9,7 @@ const {
   properGetPokemonResponse,
   responseWithError,
   properGetAllPokemonsResponse
-} = require('../schemas/pokemonServiceSchemas');
+} = require('../utils/schemas/pokemonServiceSchemas');
 
 describe('GET /pokemons', () => {
   describe('Successful response', () => {
@@ -29,9 +29,11 @@ describe('GET /pokemons', () => {
     it('status is 200', () => {
       expect(response.status).toBe(200);
     });
-
     it('response has pokemons property', () => {
       expect(response.body).toHaveProperty('pokemons');
+    });
+    it('pokemons has length 2', () => {
+      expect(response.body.pokemons.length).toBe(2);
     });
   });
 

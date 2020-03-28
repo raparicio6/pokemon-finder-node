@@ -8,7 +8,7 @@ const {
   properGetPokemonResponse,
   responseWithError,
   properGetAllPokemonsResponse
-} = require('../schemas/pokemonServiceSchemas');
+} = require('../utils/schemas/pokemonServiceSchemas');
 
 describe('Pokemon Service GET /pokemon/:pokemonName endpoint', () => {
   describe('Successful response', () => {
