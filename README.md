@@ -14,4 +14,4 @@ To start the server run:
 `npm start`
 
 You can check API documentation at */docs*.  
-It is suggested if you want to execute any request since it contains a **Try Out** option.
+It is suggested to do it if you want to execute any request since it contains a **Try Out** option, which is much more comfortable than using other tools such as Postman.
