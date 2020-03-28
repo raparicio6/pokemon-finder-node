@@ -11,15 +11,18 @@ const {
   properGetAllPokemonsResponse
 } = require('../schemas/pokemonServiceSchemas');
 
-describe('GET /pokemons/:pokemonName', () => {
+describe('GET /pokemons', () => {
   describe('Successful response', () => {
     let response = null;
     beforeAll(async done => {
       nock(`${pokemonApiBaseUrl}`)
         .get(/pokemon\/([^\s]+)/)
+        .times(2)
         .reply(200, properGetPokemonResponse);
 
-      response = await request(app).get('/pokemons/butterfree');
+      response = await request(app)
+        .get('/pokemons')
+        .query({ pokemonsNames: ['butterfree', 'pikachu'] });
       return done();
     });
 
@@ -27,8 +30,8 @@ describe('GET /pokemons/:pokemonName', () => {
       expect(response.status).toBe(200);
     });
 
-    it('response has pokemon property', () => {
-      expect(response.body).toHaveProperty('pokemon');
+    it('response has pokemons property', () => {
+      expect(response.body).toHaveProperty('pokemons');
     });
   });
 
@@ -37,9 +40,12 @@ describe('GET /pokemons/:pokemonName', () => {
     beforeAll(async done => {
       nock(`${pokemonApiBaseUrl}`)
         .get(/pokemon\/([^\s]+)/)
+        .times(2)
         .reply(503, responseWithError);
 
-      response = await request(app).get('/pokemons/butterfree');
+      response = await request(app)
+        .get('/pokemons')
+        .query({ pokemonsNames: ['butterfree', 'pikachu'] });
       return done();
     });
 
@@ -55,7 +61,7 @@ describe('GET /pokemons/:pokemonName', () => {
   });
 });
 
-describe('GET /pokemons', () => {
+describe('GET /pokemons_names', () => {
   describe('Successful response', () => {
     let response = null;
     beforeAll(async done => {
@@ -63,7 +69,7 @@ describe('GET /pokemons', () => {
         .get(/pokemon/)
         .reply(200, properGetAllPokemonsResponse);
 
-      response = await request(app).get('/pokemons');
+      response = await request(app).get('/pokemons_names');
       return done();
     });
 
@@ -79,7 +85,7 @@ describe('GET /pokemons', () => {
         .get(/pokemon/)
         .reply(503, responseWithError);
 
-      response = await request(app).get('/pokemons');
+      response = await request(app).get('/pokemons_names');
       return done();
     });
 

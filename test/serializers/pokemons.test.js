@@ -1,37 +1,40 @@
-const { formatPokemon, getHashedPokemonsNames } = require('../../app/serializers/pokemons');
+const { formatPokemons, getHashedPokemonsNames } = require('../../app/serializers/pokemons');
 const {
   properGetPokemonResponse,
   properGetAllPokemonsResponse
 } = require('../schemas/pokemonServiceSchemas');
 const hashedPokemonsNamesSchema = require('../schemas/hashedPokemonsNamesSchema');
 
-describe('formatPokemon', () => {
-  let formattedPokemon = null;
+describe('formatPokemons', () => {
+  let formattedPokemons = null;
   beforeAll(done => {
-    formattedPokemon = formatPokemon(properGetPokemonResponse);
+    formattedPokemons = formatPokemons([properGetPokemonResponse]);
     return done();
   });
 
-  it('formattedPokemon has pokemon property', () => {
-    expect(formattedPokemon).toHaveProperty('pokemon');
+  it('formattedPokemons has pokemons property', () => {
+    expect(formattedPokemons).toHaveProperty('pokemons');
+  });
+  it('pokemons property is an array', () => {
+    expect(Array.isArray(formattedPokemons.pokemons)).toBe(true);
   });
   it('formattedPokemon has id property', () => {
-    expect(formattedPokemon.pokemon).toHaveProperty('id');
+    expect(formattedPokemons.pokemons[0]).toHaveProperty('id');
   });
   it('formattedPokemon has name property', () => {
-    expect(formattedPokemon.pokemon).toHaveProperty('name');
+    expect(formattedPokemons.pokemons[0]).toHaveProperty('name');
   });
   it('formattedPokemon has weight property', () => {
-    expect(formattedPokemon.pokemon).toHaveProperty('weight');
+    expect(formattedPokemons.pokemons[0]).toHaveProperty('weight');
   });
   it('formattedPokemon has height property', () => {
-    expect(formattedPokemon.pokemon).toHaveProperty('height');
+    expect(formattedPokemons.pokemons[0]).toHaveProperty('height');
   });
   it('formattedPokemon has baseExperience property', () => {
-    expect(formattedPokemon.pokemon).toHaveProperty('baseExperience');
+    expect(formattedPokemons.pokemons[0]).toHaveProperty('baseExperience');
   });
   it('formattedPokemon has imageUrl property', () => {
-    expect(formattedPokemon.pokemon).toHaveProperty('imageUrl');
+    expect(formattedPokemons.pokemons[0]).toHaveProperty('imageUrl');
   });
 });
 
