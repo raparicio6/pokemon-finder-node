@@ -2,6 +2,7 @@ const { expressMiddleware, expressRequestIdMiddleware } = require('express-wolox
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
+const helmet = require('helmet');
 const swaggerUi = require('swagger-ui-express');
 const config = require('./config');
 const routes = require('./app/routes');
@@ -26,6 +27,8 @@ const bodyParserUrlencodedConfig = () => ({
 const app = express();
 
 app.use(cors());
+
+app.use(helmet());
 
 app.use(bodyParser.json(bodyParserJsonConfig()));
 app.use(bodyParser.urlencoded(bodyParserUrlencodedConfig()));
