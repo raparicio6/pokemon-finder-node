@@ -5,7 +5,7 @@ const {
   common: { pokemonApiBaseUrl }
 } = require('../../config');
 const {
-  properGetPokemonResponse,
+  properGetPokemonRespButterfree,
   responseWithError,
   properGetAllPokemonsResponse
 } = require('../utils/schemas/pokemonServiceSchemas');
@@ -16,7 +16,7 @@ describe('Pokemon Service GET /pokemon/:pokemonName endpoint', () => {
     beforeAll(async done => {
       nock(`${pokemonApiBaseUrl}`)
         .get(/pokemon\/([^\s]+)/)
-        .reply(200, properGetPokemonResponse);
+        .reply(200, properGetPokemonRespButterfree);
 
       pokemonApiResponse = await getPokemon('butterfree');
       return done();

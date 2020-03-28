@@ -1,14 +1,14 @@
 const { formatPokemons, getHashedPokemonsNames } = require('../../app/serializers/pokemons');
 const {
-  properGetPokemonResponse,
+  properGetPokemonRespButterfree,
   properGetAllPokemonsResponse
 } = require('../utils/schemas/pokemonServiceSchemas');
-const hashedPokemonsNamesSchema = require('../utils/schemas/hashedPokemonsNamesSchema');
+const { hashedPokemonsNamesSchema } = require('../utils/schemas/pokemonsSchemas');
 
 describe('formatPokemons', () => {
   let formattedPokemons = null;
   beforeAll(done => {
-    formattedPokemons = formatPokemons([properGetPokemonResponse]);
+    formattedPokemons = formatPokemons([properGetPokemonRespButterfree]);
     return done();
   });
 

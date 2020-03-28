@@ -6,19 +6,24 @@ const {
   common: { pokemonApiBaseUrl }
 } = require('../../config');
 const {
-  properGetPokemonResponse,
+  properGetPokemonRespButterfree,
   responseWithError,
-  properGetAllPokemonsResponse
+  properGetAllPokemonsResponse,
+  properGetPokemonRespPikachu
 } = require('../utils/schemas/pokemonServiceSchemas');
+const { hashedPokemonsNamesSchema, pokemons } = require('../utils/schemas/pokemonsSchemas');
 
 describe('GET /pokemons', () => {
   describe('Successful response', () => {
     let response = null;
     beforeAll(async done => {
       nock(`${pokemonApiBaseUrl}`)
-        .get(/pokemon\/([^\s]+)/)
-        .times(2)
-        .reply(200, properGetPokemonResponse);
+        .get('/pokemon/butterfree')
+        .reply(200, properGetPokemonRespButterfree);
+
+      nock(`${pokemonApiBaseUrl}`)
+        .get('/pokemon/pikachu')
+        .reply(200, properGetPokemonRespPikachu);
 
       response = await request(app)
         .get('/pokemons')
@@ -29,11 +34,8 @@ describe('GET /pokemons', () => {
     it('status is 200', () => {
       expect(response.status).toBe(200);
     });
-    it('response has pokemons property', () => {
-      expect(response.body).toHaveProperty('pokemons');
-    });
-    it('pokemons has length 2', () => {
-      expect(response.body.pokemons.length).toBe(2);
+    it('response has pokemons schema', () => {
+      expect(response.body).toMatchObject(pokemons);
     });
   });
 
@@ -77,6 +79,9 @@ describe('GET /pokemons_names', () => {
 
     it('status is 200', () => {
       expect(response.status).toBe(200);
+    });
+    it('response has hashedPokemonsNames schema', () => {
+      expect(response.body).toMatchObject(hashedPokemonsNamesSchema);
     });
   });
 

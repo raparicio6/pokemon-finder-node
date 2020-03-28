@@ -2,8 +2,6 @@ const request = require('supertest');
 
 const app = require('../../app');
 
-// testear caso feliz, caso no me pasan ningun query param,
-// caso sin elementos, caso array de numeros, caso no es un array (Es un string)
 describe('getPokemonsSchema', () => {
   describe('pokemonsNames is an array of strings', () => {
     let response = null;
