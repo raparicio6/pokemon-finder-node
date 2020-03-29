@@ -1,30 +1,20 @@
 const request = require('supertest');
-const nock = require('nock');
 
 const app = require('../../app');
-const {
-  common: { pokemonApiBaseUrl }
-} = require('../../config');
-const {
-  properGetPokemonRespButterfree,
-  responseWithError,
-  properGetAllPokemonsResponse,
-  properGetPokemonRespPikachu
-} = require('../utils/schemas/pokemonServiceSchemas');
 const { hashedPokemonsNamesSchema, pokemons } = require('../utils/schemas/pokemonsSchemas');
+const {
+  mockGetAllPokemons,
+  mockGetPokemon,
+  mockGetPokemonWithError,
+  mockGetAllPokemonsWithError
+} = require('../utils/mocks');
 
 describe('GET /pokemons', () => {
   describe('Successful response', () => {
     let response = null;
     beforeAll(async done => {
-      nock(`${pokemonApiBaseUrl}`)
-        .get('/pokemon/butterfree')
-        .reply(200, properGetPokemonRespButterfree);
-
-      nock(`${pokemonApiBaseUrl}`)
-        .get('/pokemon/pikachu')
-        .reply(200, properGetPokemonRespPikachu);
-
+      mockGetPokemon('Butterfree');
+      mockGetPokemon('Pikachu');
       response = await request(app)
         .get('/pokemons')
         .query({ pokemonsNames: ['butterfree', 'pikachu'] });
@@ -42,11 +32,7 @@ describe('GET /pokemons', () => {
   describe('Response with error', () => {
     let response = null;
     beforeAll(async done => {
-      nock(`${pokemonApiBaseUrl}`)
-        .get(/pokemon\/([^\s]+)/)
-        .times(2)
-        .reply(503, responseWithError);
-
+      mockGetPokemonWithError(2);
       response = await request(app)
         .get('/pokemons')
         .query({ pokemonsNames: ['butterfree', 'pikachu'] });
@@ -69,10 +55,7 @@ describe('GET /pokemons_names', () => {
   describe('Successful response', () => {
     let response = null;
     beforeAll(async done => {
-      nock(`${pokemonApiBaseUrl}`)
-        .get(/pokemon/)
-        .reply(200, properGetAllPokemonsResponse);
-
+      mockGetAllPokemons();
       response = await request(app).get('/pokemons_names');
       return done();
     });
@@ -88,10 +71,7 @@ describe('GET /pokemons_names', () => {
   describe('Response with error', () => {
     let response = null;
     beforeAll(async done => {
-      nock(`${pokemonApiBaseUrl}`)
-        .get(/pokemon/)
-        .reply(503, responseWithError);
-
+      mockGetAllPokemonsWithError();
       response = await request(app).get('/pokemons_names');
       return done();
     });

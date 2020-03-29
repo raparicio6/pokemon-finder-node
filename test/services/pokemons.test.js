@@ -1,23 +1,16 @@
-const nock = require('nock');
-
 const { getPokemon, getAllPokemons } = require('../../app/services/pokemons');
 const {
-  common: { pokemonApiBaseUrl }
-} = require('../../config');
-const {
-  properGetPokemonRespButterfree,
-  responseWithError,
-  properGetAllPokemonsResponse
-} = require('../utils/schemas/pokemonServiceSchemas');
+  mockGetAllPokemons,
+  mockGetPokemon,
+  mockGetPokemonWithError,
+  mockGetAllPokemonsWithError
+} = require('../utils/mocks');
 
 describe('Pokemon Service GET /pokemon/:pokemonName endpoint', () => {
   describe('Successful response', () => {
     let pokemonApiResponse = null;
     beforeAll(async done => {
-      nock(`${pokemonApiBaseUrl}`)
-        .get(/pokemon\/([^\s]+)/)
-        .reply(200, properGetPokemonRespButterfree);
-
+      mockGetPokemon('Butterfree');
       pokemonApiResponse = await getPokemon('butterfree');
       return done();
     });
@@ -78,10 +71,7 @@ describe('Pokemon Service GET /pokemon/:pokemonName endpoint', () => {
   describe('Response with error', () => {
     let pokemonApiError = null;
     beforeAll(async done => {
-      nock(`${pokemonApiBaseUrl}`)
-        .get(/pokemon\/([^\s]+)/)
-        .reply(503, responseWithError);
-
+      mockGetPokemonWithError(1);
       try {
         await getPokemon('butterfree');
       } catch (error) {
@@ -106,10 +96,7 @@ describe('Pokemon Service GET /pokemon endpoint', () => {
   describe('Successful response', () => {
     let pokemonApiResponse = null;
     beforeAll(async done => {
-      nock(`${pokemonApiBaseUrl}`)
-        .get(/pokemon/)
-        .reply(200, properGetAllPokemonsResponse);
-
+      mockGetAllPokemons();
       pokemonApiResponse = await getAllPokemons();
       return done();
     });
@@ -140,10 +127,7 @@ describe('Pokemon Service GET /pokemon endpoint', () => {
   describe('Response with error', () => {
     let pokemonApiError = null;
     beforeAll(async done => {
-      nock(`${pokemonApiBaseUrl}`)
-        .get(/pokemon/)
-        .reply(503, responseWithError);
-
+      mockGetAllPokemonsWithError();
       try {
         await getAllPokemons();
       } catch (error) {

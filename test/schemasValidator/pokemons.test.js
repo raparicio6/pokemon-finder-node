@@ -1,27 +1,14 @@
 const request = require('supertest');
-const nock = require('nock');
 
 const app = require('../../app');
-const {
-  properGetPokemonRespButterfree,
-  properGetPokemonRespPikachu
-} = require('../utils/schemas/pokemonServiceSchemas');
-const {
-  common: { pokemonApiBaseUrl }
-} = require('../../config');
+const { mockGetPokemon } = require('../utils/mocks');
 
 describe('getPokemonsSchema', () => {
   describe('pokemonsNames is an array of strings', () => {
     let response = null;
     beforeAll(async done => {
-      nock(`${pokemonApiBaseUrl}`)
-        .get('/pokemon/butterfree')
-        .reply(200, properGetPokemonRespButterfree);
-
-      nock(`${pokemonApiBaseUrl}`)
-        .get('/pokemon/pikachu')
-        .reply(200, properGetPokemonRespPikachu);
-
+      mockGetPokemon('Butterfree');
+      mockGetPokemon('Pikachu');
       response = await request(app)
         .get('/pokemons')
         .query({ pokemonsNames: ['butterfree', 'pikachu'] });
