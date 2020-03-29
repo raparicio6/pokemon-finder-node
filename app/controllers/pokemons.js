@@ -7,7 +7,7 @@ exports.getPokemons = (req, res, next) => {
     .catch(next);
 };
 
-exports.getAllPokemonsNames = (req, res, next) =>
+exports.getAllPokemonsHashedNames = (req, res, next) =>
   getAllPokemons()
     .then(({ results }) => res.send(getHashedPokemonsNames(results)))
     .catch(next);

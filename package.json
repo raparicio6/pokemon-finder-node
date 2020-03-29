@@ -1,7 +1,7 @@
 {
   "name": "pokemon-finder-node",
   "version": "0.1.0",
-  "description": "API to integrate with a Pokemon API",
+  "description": "API to integrate with pokeapi.co",
   "engines": {
     "node": "10.14.2",
     "npm": "6.4.1"

@@ -7,6 +7,12 @@ module.exports = {
     type: 'string',
     example: 'pikachu'
   },
+  pokemonsNames: {
+    type: 'array',
+    items: {
+      $ref: '#/components/schemas/name'
+    }
+  },
   weight: {
     type: 'number',
     example: 20
@@ -39,27 +45,33 @@ module.exports = {
   Pokemon: {
     type: 'object',
     properties: {
-      pokemon: {
-        type: 'object',
-        properties: {
-          id: {
-            $ref: '#/components/schemas/id'
-          },
-          name: {
-            $ref: '#/components/schemas/name'
-          },
-          weight: {
-            $ref: '#/components/schemas/weight'
-          },
-          height: {
-            $ref: '#/components/schemas/height'
-          },
-          baseExperience: {
-            $ref: '#/components/schemas/baseExperience'
-          },
-          imageUrl: {
-            $ref: '#/components/schemas/imageUrl'
-          }
+      id: {
+        $ref: '#/components/schemas/id'
+      },
+      name: {
+        $ref: '#/components/schemas/name'
+      },
+      weight: {
+        $ref: '#/components/schemas/weight'
+      },
+      height: {
+        $ref: '#/components/schemas/height'
+      },
+      baseExperience: {
+        $ref: '#/components/schemas/baseExperience'
+      },
+      imageUrl: {
+        $ref: '#/components/schemas/imageUrl'
+      }
+    }
+  },
+  Pokemons: {
+    type: 'object',
+    properties: {
+      pokemons: {
+        type: 'array',
+        items: {
+          $ref: '#/components/schemas/Pokemon'
         }
       }
     }

@@ -9,7 +9,7 @@ module.exports = {
   info: {
     version: '0.1.0',
     title: 'pokemon-finder-node',
-    description: 'API to integrate with a Pokemon API',
+    description: 'API to integrate with pokeapi.co',
     termsOfService: '',
     contact: {
       name: 'Rodrigo Aparicio',

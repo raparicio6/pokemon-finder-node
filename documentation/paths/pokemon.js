@@ -1,26 +1,40 @@
 module.exports = {
-  '/pokemons/{pokemonName}': {
+  '/pokemons': {
     get: {
       tags: ['GET'],
-      description: 'Get pokemon',
-      operationId: 'getPokemon',
+      description: 'Get pokemons',
+      operationId: 'getPokemons',
       parameters: [
         {
-          name: 'pokemonName',
-          in: 'path',
+          name: 'pokemonsNames',
+          in: 'query',
           schema: {
-            $ref: '#/components/schemas/name'
+            $ref: '#/components/schemas/pokemonsNames'
           },
+          allowReserved: true,
           required: true
         }
       ],
       responses: {
         200: {
-          description: 'Pokemon was obtained',
+          description: 'Pokemons were obtained',
           content: {
             'application/json': {
               schema: {
-                $ref: '#/components/schemas/Pokemon'
+                $ref: '#/components/schemas/Pokemons'
+              }
+            }
+          }
+        },
+        422: {
+          content: {
+            'application/json': {
+              schema: {
+                $ref: '#/components/schemas/Error'
+              },
+              example: {
+                message: 'pokemonsNames has to be an array of strings.',
+                internal_code: 'schema_error'
               }
             }
           }
@@ -28,15 +42,15 @@ module.exports = {
       }
     }
   },
-  '/pokemons': {
+  '/pokemons_names': {
     get: {
       tags: ['GET'],
-      description: 'Get pokemons hashed names',
-      operationId: 'getPokemonsHashedNames',
+      description: 'Get all pokemons hashed names',
+      operationId: 'getAllPokemonsHashedNames',
       parameters: [],
       responses: {
         200: {
-          description: 'Pokemons hashed names were obtained',
+          description: 'All pokemons hashed names were obtained',
           content: {
             'application/json': {
               schema: {
