@@ -6,7 +6,7 @@ module.exports = {
       operationId: 'getPokemons',
       parameters: [
         {
-          name: 'pokemonsNames',
+          name: 'pokemonsNames[]',
           in: 'query',
           schema: {
             $ref: '#/components/schemas/pokemonsNames'
