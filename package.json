@@ -45,7 +45,8 @@
       "!**/build/**",
       "!**/config/**",
       "!**/scripts/**",
-      "!**/errors.js"
+      "!**/errors.js",
+      "!**/schemaValidator.js"
     ],
     "testEnvironment": "node",
     "transform": {
