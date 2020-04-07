@@ -4,7 +4,7 @@ const {
   mockGetPokemon,
   mockGetPokemonWithError,
   mockGetAllPokemonsWithError
-} = require('../utils/mocks');
+} = require('../testUtils/mocks');
 
 describe('Pokemon Service GET /pokemon/:pokemonName endpoint', () => {
   describe('Successful response', () => {

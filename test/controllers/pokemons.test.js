@@ -1,13 +1,13 @@
 const request = require('supertest');
 
 const app = require('../../app');
-const { hashedPokemonsNamesSchema, pokemons } = require('../utils/schemas/pokemonsSchemas');
+const { hashedPokemonsNamesSchema, pokemons } = require('../testUtils/schemas/pokemonsSchemas');
 const {
   mockGetAllPokemons,
   mockGetPokemon,
   mockGetPokemonWithError,
   mockGetAllPokemonsWithError
-} = require('../utils/mocks');
+} = require('../testUtils/mocks');
 
 describe('GET /pokemons', () => {
   describe('Successful response', () => {

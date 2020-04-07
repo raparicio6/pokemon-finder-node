@@ -1,7 +1,7 @@
 const request = require('supertest');
 
 const app = require('../../app');
-const { mockGetPokemon } = require('../utils/mocks');
+const { mockGetPokemon } = require('../testUtils/mocks');
 
 describe('getPokemonsSchema', () => {
   describe('pokemonsNames is an array of strings', () => {
