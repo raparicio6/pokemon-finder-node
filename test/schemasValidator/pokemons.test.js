@@ -1,5 +1,4 @@
 const request = require('supertest');
-
 const app = require('../../app');
 const { mockGetPokemon } = require('../testUtils/mocks');
 
@@ -32,8 +31,8 @@ describe('getPokemonsSchema', () => {
     it('status is 422', () => {
       expect(response.status).toBe(422);
     });
-    it('internal_code is schema_error', () => {
-      expect(response.body.internal_code).toBe('schema_error');
+    it('internalCode is schema_error', () => {
+      expect(response.body.internalCode).toBe('schema_error');
     });
     it('message is ["pokemonsNames has to be an array of strings."]', () => {
       expect(response.body.message).toStrictEqual(['pokemonsNames has to be an array of strings.']);
@@ -49,8 +48,8 @@ describe('getPokemonsSchema', () => {
     it('status is 422', () => {
       expect(response.status).toBe(422);
     });
-    it('internal_code is schema_error', () => {
-      expect(response.body.internal_code).toBe('schema_error');
+    it('internalCode is schema_error', () => {
+      expect(response.body.internalCode).toBe('schema_error');
     });
     it('message is ["pokemonsNames has to be an array of strings."]', () => {
       expect(response.body.message).toStrictEqual(['pokemonsNames has to be an array of strings.']);
@@ -68,8 +67,8 @@ describe('getPokemonsSchema', () => {
     it('status is 422', () => {
       expect(response.status).toBe(422);
     });
-    it('internal_code is schema_error', () => {
-      expect(response.body.internal_code).toBe('schema_error');
+    it('internalCode is schema_error', () => {
+      expect(response.body.internalCode).toBe('schema_error');
     });
     it('message is ["pokemonsNames has to be an array of strings."]', () => {
       expect(response.body.message).toStrictEqual(['pokemonsNames has to be an array of strings.']);
@@ -87,8 +86,8 @@ describe('getPokemonsSchema', () => {
     it('status is 422', () => {
       expect(response.status).toBe(422);
     });
-    it('internal_code is schema_error', () => {
-      expect(response.body.internal_code).toBe('schema_error');
+    it('internalCode is schema_error', () => {
+      expect(response.body.internalCode).toBe('schema_error');
     });
     it('message is ["pokemonsNames has to be an array of strings."]', () => {
       expect(response.body.message).toStrictEqual(['pokemonsNames has to be an array of strings.']);

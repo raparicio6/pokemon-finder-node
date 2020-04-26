@@ -1,5 +1,4 @@
 const request = require('supertest');
-
 const app = require('../../app');
 const { hashedPokemonsNamesSchema, pokemons } = require('../testUtils/schemas/pokemonsSchemas');
 const {
@@ -42,8 +41,8 @@ describe('GET /pokemons', () => {
     it('status is 503', () => {
       expect(response.status).toBe(503);
     });
-    it('message is Request failed with status code 503', () => {
-      expect(response.body.message).toBe('Request failed with status code 503');
+    it('message is Service unavailable', () => {
+      expect(response.body.message).toBe('Service unavailable');
     });
     it('origin is Pokemon service', () => {
       expect(response.body.origin).toBe('Pokemon service');
@@ -79,8 +78,8 @@ describe('GET /pokemons_names', () => {
     it('status is 503', () => {
       expect(response.status).toBe(503);
     });
-    it('message is Request failed with status code 503', () => {
-      expect(response.body.message).toBe('Request failed with status code 503');
+    it('message is Service unavailable', () => {
+      expect(response.body.message).toBe('Service unavailable');
     });
     it('origin is Pokemon service', () => {
       expect(response.body.origin).toBe('Pokemon service');

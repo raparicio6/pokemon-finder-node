@@ -281,7 +281,7 @@ exports.properGetPokemonRespPikachu = {
 
 exports.responseWithError = {
   statusCode: 503,
-  origin: 'Pokemon service'
+  message: 'Service unavailable'
 };
 
 exports.properGetAllPokemonsResponse = {

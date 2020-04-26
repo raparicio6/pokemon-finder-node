@@ -1,5 +1,4 @@
 const nock = require('nock');
-
 const pokemonServiceSchemas = require('./schemas/pokemonServiceSchemas');
 const {
   common: { pokemonApiBaseUrl }

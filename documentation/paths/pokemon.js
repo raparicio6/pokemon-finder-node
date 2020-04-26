@@ -34,7 +34,7 @@ module.exports = {
               },
               example: {
                 message: 'pokemonsNames has to be an array of strings.',
-                internal_code: 'schema_error'
+                internalCode: 'schema_error'
               }
             }
           }

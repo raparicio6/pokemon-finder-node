@@ -16,5 +16,5 @@ exports.handle = (error, req, res, next) => {
 
   res.status(statusCodes[error.internalCode] || DEFAULT_STATUS_CODE);
   logger.error(error);
-  return res.send({ message: error.message, internal_code: error.internalCode || errors.DEFAULT_ERROR });
+  return res.send({ message: error.message, internalCode: error.internalCode || errors.DEFAULT_ERROR });
 };

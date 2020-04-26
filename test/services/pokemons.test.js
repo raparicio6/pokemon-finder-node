@@ -81,13 +81,10 @@ describe('Pokemon Service GET /pokemon/:pokemonName endpoint', () => {
     });
 
     it('status is 503', () => {
-      expect(pokemonApiError.statusCode).toBe(503);
+      expect(pokemonApiError.response.status).toBe(503);
     });
-    it('message is Request failed with status code 503', () => {
-      expect(pokemonApiError.message).toBe('Request failed with status code 503');
-    });
-    it('origin is Pokemon service', () => {
-      expect(pokemonApiError.origin).toBe('Pokemon service');
+    it('message is Service unavailable', () => {
+      expect(pokemonApiError.response.data.message).toBe('Service unavailable');
     });
   });
 });
@@ -134,13 +131,10 @@ describe('Pokemon Service GET /pokemon endpoint', () => {
     });
 
     it('status is 503', () => {
-      expect(pokemonApiError.statusCode).toBe(503);
+      expect(pokemonApiError.response.status).toBe(503);
     });
-    it('message is Request failed with status code 503', () => {
-      expect(pokemonApiError.message).toBe('Request failed with status code 503');
-    });
-    it('origin is Pokemon service', () => {
-      expect(pokemonApiError.origin).toBe('Pokemon service');
+    it('message is Service unavailable', () => {
+      expect(pokemonApiError.response.data.message).toBe('Service unavailable');
     });
   });
 });

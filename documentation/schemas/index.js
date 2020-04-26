@@ -8,7 +8,7 @@ module.exports = {
       message: {
         type: 'string'
       },
-      internal_code: {
+      internalCode: {
         type: 'string'
       }
     }

@@ -6,9 +6,9 @@ const internalError = (message, internalCode) => ({
 exports.DEFAULT_ERROR = 'default_error';
 exports.defaultError = message => internalError(message, exports.DEFAULT_ERROR);
 
-exports.externalApiError = (status, message, origin = 'External Api') => ({
+exports.externalApiError = (statusCode, message, origin = 'External Api') => ({
+  statusCode: statusCode || 500,
   message,
-  statusCode: status || 500,
   origin
 });
 
