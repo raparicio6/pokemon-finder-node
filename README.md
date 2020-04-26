@@ -1,6 +1,7 @@
 # Pokemon finder
 
 [![Build Status](https://circleci.com/gh/raparicio6/pokemon-finder-node.svg?style=shield)](https://circleci.com/gh/raparicio6/pokemon-finder-node)
+[![Coverage Status](https://coveralls.io/repos/github/raparicio6/pokemon-finder-node/badge.svg?branch=master)](https://coveralls.io/github/raparicio6/pokemon-finder-node?branch=master)
 
 &nbsp;
 **Be a pokemon master!**
