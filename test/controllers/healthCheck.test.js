@@ -13,9 +13,6 @@ describe('GET /health', () => {
     expect(response.status).toBe(200);
   });
   it('response has uptime property', () => {
-    expect(response.body).toHaveProperty('uptime');
-  });
-  it('uptime property is a number', () => {
-    expect(typeof response.body.uptime).toBe('number');
+    expect(response.body).toHaveProperty('uptime', expect.any(Number));
   });
 });

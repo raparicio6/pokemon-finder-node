@@ -111,10 +111,7 @@ describe('Pokemon Service GET /pokemon endpoint', () => {
       expect(pokemonApiResponse).toHaveProperty('previous');
     });
     it('response has results property', () => {
-      expect(pokemonApiResponse).toHaveProperty('results');
-    });
-    it('results is an array', () => {
-      expect(Array.isArray(pokemonApiResponse.results)).toBe(true);
+      expect(pokemonApiResponse).toHaveProperty('results', expect.any(Array));
     });
     it('results elements have name property', () => {
       expect(pokemonApiResponse.results[0]).toHaveProperty('name');

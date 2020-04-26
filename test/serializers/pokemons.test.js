@@ -13,10 +13,7 @@ describe('formatPokemons', () => {
   });
 
   it('formattedPokemons has pokemons property', () => {
-    expect(formattedPokemons).toHaveProperty('pokemons');
-  });
-  it('pokemons property is an array', () => {
-    expect(Array.isArray(formattedPokemons.pokemons)).toBe(true);
+    expect(formattedPokemons).toHaveProperty('pokemons', expect.any(Array));
   });
   it('pokemons property has length 1', () => {
     expect(formattedPokemons.pokemons.length).toBe(1);
