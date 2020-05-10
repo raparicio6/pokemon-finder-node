@@ -6,7 +6,7 @@
 &nbsp;
 **Be a pokemon master!**
 
-<img alt="Pokeball" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Pokebola-pokeball-png-0.png/601px-Pokebola-pokeball-png-0.png" height="200" width="200">
+<img alt="App" src="./app-image.png">
 
 &nbsp;
 ## Getting Started
@@ -21,7 +21,7 @@ Install dependencies by running `npm i`.
 Create a *.env* file at the root of the project and add:  
 `POKEMON_API_BASE_URL=https://pokeapi.co/api/v2`
 
-This project has its corresponding [frontend](https://github.com/raparicio6/pokemon-finder-react).
+**This project has its corresponding [frontend](https://github.com/raparicio6/pokemon-finder-react).**
 
 ### Starting app
 
