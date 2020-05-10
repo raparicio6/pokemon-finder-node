@@ -28,7 +28,7 @@ describe('GET /pokemons', () => {
     });
   });
 
-  describe('pokeapi service respond with error respond with error', () => {
+  describe('pokeapi service respond with error, respond with error', () => {
     let response = null;
     beforeAll(async done => {
       mockGetPokemonWithError(2);
@@ -67,7 +67,7 @@ describe('GET /pokemons_names', () => {
     });
   });
 
-  describe('pokeapi service respond with error respond with error', () => {
+  describe('pokeapi service respond with error, respond with error', () => {
     let response = null;
     beforeAll(async done => {
       mockGetAllPokemonsWithError();
