@@ -21,7 +21,7 @@ Install dependencies by running `npm i`.
 Create a *.env* file at the root of the project and add:  
 `POKEMON_API_BASE_URL=https://pokeapi.co/api/v2`
 
-**This project has its corresponding [frontend](https://github.com/raparicio6/pokemon-finder-react).**
+**This project has its corresponding [Frontend](https://github.com/raparicio6/pokemon-finder-react).**
 
 ### Starting app
 
