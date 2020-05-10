@@ -1,4 +1,4 @@
-exports.formatPokemons = pokemons => ({
+exports.serializePokemons = pokemons => ({
   pokemons: pokemons.map(({ id, name, base_experience, weight, height, sprites }) => ({
     id,
     name,

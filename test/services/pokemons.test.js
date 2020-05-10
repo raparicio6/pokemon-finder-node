@@ -19,7 +19,7 @@ describe('Pokemon Service GET /pokemon/:pokemonName endpoint', () => {
       expect(pokemonApiResponse).toHaveProperty('abilities');
     });
     it('response has base_experience property', () => {
-      expect(pokemonApiResponse).toHaveProperty('base_experience');
+      expect(pokemonApiResponse).toHaveProperty('base_experience', expect.any(Number));
     });
     it('response has forms property', () => {
       expect(pokemonApiResponse).toHaveProperty('forms');
@@ -28,13 +28,13 @@ describe('Pokemon Service GET /pokemon/:pokemonName endpoint', () => {
       expect(pokemonApiResponse).toHaveProperty('game_indices');
     });
     it('response has height property', () => {
-      expect(pokemonApiResponse).toHaveProperty('height');
+      expect(pokemonApiResponse).toHaveProperty('height', expect.any(Number));
     });
     it('response has held_items property', () => {
       expect(pokemonApiResponse).toHaveProperty('held_items');
     });
     it('response has id property', () => {
-      expect(pokemonApiResponse).toHaveProperty('id');
+      expect(pokemonApiResponse).toHaveProperty('id', expect.any(Number));
     });
     it('response has is_default property', () => {
       expect(pokemonApiResponse).toHaveProperty('is_default');
@@ -46,7 +46,7 @@ describe('Pokemon Service GET /pokemon/:pokemonName endpoint', () => {
       expect(pokemonApiResponse).toHaveProperty('moves');
     });
     it('response has name property', () => {
-      expect(pokemonApiResponse).toHaveProperty('name');
+      expect(pokemonApiResponse).toHaveProperty('name', expect.any(String));
     });
     it('response has order property', () => {
       expect(pokemonApiResponse).toHaveProperty('order');
@@ -55,7 +55,7 @@ describe('Pokemon Service GET /pokemon/:pokemonName endpoint', () => {
       expect(pokemonApiResponse).toHaveProperty('species');
     });
     it('response has sprites property', () => {
-      expect(pokemonApiResponse).toHaveProperty('sprites');
+      expect(pokemonApiResponse).toHaveProperty('sprites', expect.any(Object));
     });
     it('response has stats property', () => {
       expect(pokemonApiResponse).toHaveProperty('stats');
@@ -64,7 +64,7 @@ describe('Pokemon Service GET /pokemon/:pokemonName endpoint', () => {
       expect(pokemonApiResponse).toHaveProperty('types');
     });
     it('response has weight property', () => {
-      expect(pokemonApiResponse).toHaveProperty('weight');
+      expect(pokemonApiResponse).toHaveProperty('weight', expect.any(Number));
     });
   });
 
@@ -111,7 +111,7 @@ describe('Pokemon Service GET /pokemon endpoint', () => {
       expect(pokemonApiResponse).toHaveProperty('results', expect.any(Array));
     });
     it('results elements have name property', () => {
-      expect(pokemonApiResponse.results[0]).toHaveProperty('name');
+      expect(pokemonApiResponse.results[0]).toHaveProperty('name', expect.any(String));
     });
     it('results elements have url property', () => {
       expect(pokemonApiResponse.results[0]).toHaveProperty('url');
