@@ -43,11 +43,10 @@
     "collectCoverageFrom": [
       "app/**/*.js",
       "!**/node_modules/**",
-      "!**/build/**",
       "!**/config/**",
-      "!**/scripts/**",
       "!**/errors.js",
-      "!**/schemaValidator.js"
+      "!**/schemaValidator.js",
+      "!**/logger.js"
     ],
     "testEnvironment": "node",
     "transform": {
